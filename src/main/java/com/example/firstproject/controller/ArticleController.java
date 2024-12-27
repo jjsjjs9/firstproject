@@ -24,17 +24,14 @@ public class ArticleController {
     @PostMapping("/articles/create")
     public String createArticle(ArticleFormDto form){
 
-        log.info(form.toString());
-        // System.out.println(form.toString()); -> logging 기능으로 대체.
-
+        //log.info(form.toString());
+        System.out.println(form.toString()); // -> logging 기능으로 대체.
         //1. dto-> entity로 변환.
-        Article article = form.toEntity();
-        log.info(article.toString());
-
-
+        //Article article = form.toEntity();
+        //log.info(article.toString());
         //2. repository에게 엔티티를 db안에 저장하게 함.
-        Article saved = articleRepository.save(article);
-        log.info(saved.toString());
+       // Article saved = articleRepository.save(article);
+        //log.info(saved.toString());
         return "";
     }
 }
