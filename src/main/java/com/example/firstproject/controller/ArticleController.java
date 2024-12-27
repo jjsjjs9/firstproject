@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-@Slf4j  // 로깅을 위한 골뱅이
+@Slf4j  // 로깅을 위한 애너테이션
 public class ArticleController {
 
     @Autowired
@@ -24,14 +24,9 @@ public class ArticleController {
     @PostMapping("/articles/create")
     public String createArticle(ArticleFormDto form){
 
-        log.info(form.toString());
-        // System.out.println(form.toString()); -> logging 기능으로 대체.
-
         //1. dto-> entity로 변환.
         Article article = form.toEntity();
-        log.info(article.toString());
-
-
+        log.info(form.toString());
         //2. repository에게 엔티티를 db안에 저장하게 함.
         Article saved = articleRepository.save(article);
         log.info(saved.toString());

@@ -4,13 +4,14 @@ import com.example.firstproject.entity.Article;
 import lombok.AllArgsConstructor;
 import lombok.ToString;
 
-@AllArgsConstructor // 생성자의 리팩터링
+@AllArgsConstructor
 @ToString   // tostring의 리팩터링
 public class ArticleFormDto {
-    private String title;
-    private String content;
+    private String title;       // 제목 필드
+    private String content;     // 내용 필드
 
-    public Article toEntity() {
-        return new Article(null,title,content);
-    }
-}
+
+     public Article toEntity() {
+        return new Article(null, title,content);
+     }
+ }
