@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -22,7 +23,9 @@ public class ArticleController {
 
     @GetMapping("/articles/new")
     public String newArticleForm() {
+
         return "articles/new";
+
     }
 
     @PostMapping("/articles/create")
@@ -39,10 +42,24 @@ public class ArticleController {
 
     @GetMapping("/articles/{id}")
     public String show(@PathVariable Long id, Model model) {
-        log.info("id = " + id);
-        Article articleEntity = articleRepository.findById(id).orElse(null);//1. id를 조회해 데이터를 가져온다.
-        model.addAttribute("article", articleEntity);//2. 모델에 데이터를 등록.
-        return "articles/show";     //3. 뷰 페이지로 반환.
-        return "";
+        log.info("id=", id);
+        Article articleEntity = articleRepository.findById(id).orElse(null);
+        model.addAttribute("article", articleEntity);
+        return "articles/show";
+    }
+
+    @GetMapping("/articles")
+    public String index(Model model) {
+        //1. 모든 article을 가져온다.
+        List<Article> articleEntityList = articleRepository.findAll();
+
+
+        //2. 가져온 article 묶음을 뷰로 전달!
+        model.addAttribute("articleList", articleEntityList);
+
+        // 3. 뷰 페이지를 설정!
+
+        return "articles/index";        // articles/index.mustache
     }
 }
+

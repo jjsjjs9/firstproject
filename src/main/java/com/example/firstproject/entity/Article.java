@@ -5,9 +5,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @AllArgsConstructor
+@NoArgsConstructor      // 디폴트 생성자를 추가하는 애너테이션
 @ToString
 @Entity     // 엔티티 선언
 public class Article {
